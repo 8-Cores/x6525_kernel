@@ -70,7 +70,19 @@ jobs:
           clang --version
           ld.lld --version
           llvm-ar --version | head -1
-
+      - name: Integrate MemKernel (static, in-tree)
+        run: |
+          curl -LSs -o /tmp/memkernel_setup.sh \
+            https://raw.githubusercontent.com/Poko-Apps/MemKernel/main/kernel/setup.sh
+          bash /tmp/memkernel_setup.sh Y
+          echo "CONFIG_MEMKERNEL=y" >> arch/arm64/configs/bg6_defconfig
+          
+          # تحقق من نجاح الدمج
+          echo "=== Checking MemKernel integration ==="
+          ls -la drivers/memkernel/ 2>/dev/null || echo "ERROR: drivers/memkernel not found"
+          grep -n "memkernel" drivers/Makefile || echo "ERROR: Makefile not modified"
+          grep -n "memkernel" drivers/Kconfig || echo "ERROR: Kconfig not modified"
+          echo "=== Integration check complete ==="
       - name: Show kernel release
         run: |
           make $MAKE_ARGS bg6_defconfig
