@@ -2,7 +2,6 @@
 
 config QSFWSZ
 	bool "QSFWSZ kernel diagnostic interface"
-	select MISC_DEVICES
 	default n
 	help
 	  Build the QSFWSZ diagnostic miscdevice at /dev/qsfwsz.

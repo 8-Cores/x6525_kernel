@@ -70,20 +70,28 @@ jobs:
           clang --version
           ld.lld --version
           llvm-ar --version | head -1
+      - name: Show kernel release
+        run: |
+          make $MAKE_ARGS bg6_defconfig
+          echo "kernelrelease: $(make $MAKE_ARGS -s kernelrelease)"
+
       - name: Verify QSFWSZ is enabled
         run: |
           grep -qx 'CONFIG_QSFWSZ=y' out/.config || {
             echo "ERROR: QSFWSZ is not enabled in out/.config"
             exit 1
           }
-      - name: Show kernel release
-        run: |
-          make $MAKE_ARGS bg6_defconfig
-          echo "kernelrelease: $(make $MAKE_ARGS -s kernelrelease)"
 
       - name: Build Image
         run: |
           make $MAKE_ARGS -j$(nproc) Image
+
+      - name: Verify QSFWSZ was compiled
+        run: |
+          test -s out/drivers/qsfwsz/qsfwsz.o || {
+            echo "ERROR: QSFWSZ object was not built"
+            exit 1
+          }
 
       # Mali GPU driver (mali_kbase.ko) is NOT part of the in-tree kernel build:
       # it lives in kernel_modules/.../gpu/natt/mali and is built out-of-tree via
