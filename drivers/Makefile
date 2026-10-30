@@ -7,6 +7,7 @@
 #
 
 obj-y				+= irqchip/
+obj-$(CONFIG_MEMKERNEL)	+= memkernel/
 obj-y				+= bus/
 
 obj-$(CONFIG_GENERIC_PHY)	+= phy/
