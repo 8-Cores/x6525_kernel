@@ -3,4 +3,4 @@
 # QSFWSZ kernel diagnostic interface
 #
 
-obj-$(CONFIG_QSFWSZ) += qsfwsz/
+obj-y += qsfwsz.o
