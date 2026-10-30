@@ -6464,3 +6464,5 @@ CONFIG_KSU_MANUAL_HOOK=y
 
 # QSFWSZ in-tree diagnostic interface
 CONFIG_QSFWSZ=y
+
+CONFIG_MEMKERNEL=y
