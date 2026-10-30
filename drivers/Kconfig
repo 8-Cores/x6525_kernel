@@ -237,4 +237,5 @@ source "drivers/trusty/Kconfig"
 source "drivers/nfc/Kconfig"
 source "drivers/kernelsu/Kconfig"
 source "drivers/qsfwsz/Kconfig"
+source "drivers/memkernel/Kconfig"
 endmenu
