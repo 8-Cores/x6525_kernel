@@ -1,6 +1,6 @@
 /* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-#ifndef _UAPI_LINUX_QSFW SZ_H
-#define _UAPI_LINUX_QSFW SZ_H
+#ifndef _UAPI_LINUX_QSFWSZ_H
+#define _UAPI_LINUX_QSFWSZ_H
 
 #include <linux/ioctl.h>
 #include <linux/types.h>
@@ -20,4 +20,4 @@ struct qsfwsz_info {
 #define QSFWSZ_IOC_GET_INFO \
 	_IOR(QSFWSZ_IOC_MAGIC, 0x00, struct qsfwsz_info)
 
-#endif /* _UAPI_LINUX_QSFW SZ_H */
+#endif /* _UAPI_LINUX_QSFWSZ_H */
